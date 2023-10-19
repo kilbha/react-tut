@@ -1,25 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import { useRef, useState } from 'react';
 
 function App() {
+  const [name, setName] = useState();
+  const inputRef = useRef();
+  const focus = () => {
+    inputRef.current.focus();
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <input
+        ref={inputRef}
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+
+      <div>My Name is {name}</div>
+      <button onClick={focus}>Focus</button>
+    </>
   );
 }
 
 export default App;
+
+//ref persists between renders of your component.
+//Reference elements inside our html
+//useRef will not set the state.
+//used for referencing input elements
+//used for accessing dom elements as mentioned above.
